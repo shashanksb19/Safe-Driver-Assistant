@@ -1,0 +1,23 @@
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(25,GPIO.IN)
+GPIO.setup(23,GPIO.OUT)
+GPIO.setwarnings(False)
+def buzzerRoutine():
+while True:
+GPIO.output(23,GPIO.HIGH)
+time.sleep(0.5)
+GPIO.output(23,GPIO.LOW)
+time.sleep(0.5)
+
+while True:
+input1 = GPIO.input(25)
+if input1 == 0 :
+print("No alcohol")
+GPIO.output(23,GPIO.LOW)
+else:
+print("alcohol is detected")
+for i in range(0,20):
+buzzerRoutine()
+i+=1
